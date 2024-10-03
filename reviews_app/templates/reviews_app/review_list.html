@@ -1,0 +1,18 @@
+<h1>Відгуки</h1>
+
+<ul>
+  {% for review in reviews %}
+    <li>
+      <h2>{{ review.title }}</h2>
+      <p>{{ review.content }}</p>
+      <p>Автор: {{ review.author.username }}</p>
+      <p>Дата: {{ review.pub_date }}</p>
+    </li>
+  {% endfor %}
+</ul>
+
+{% if user.is_authenticated %}
+  <a href="{% url 'reviews:add' %}">Додати відгук</a>
+{% else %}
+  <p><a href="{% url 'reviews:login' %}">Увійдіть</a>, щоб додати відгук.</p>
+{% endif %}
